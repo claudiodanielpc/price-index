@@ -151,6 +151,48 @@ con datos de INEGI."
 ggsave("precios2.png", height=10, width=20, units='in', dpi=300)
 
 
+##Gráfica 2
+
+
+inpp%>%
+  filter(grupo=="Índice" | grupo=="Subíndice")%>%
+  filter(fecha==max(fecha) | fecha=="2020-12-15")%>%
+  group_by(catego)%>%
+  ##Cacular variaciones
+  ##Acumulada en el año
+  mutate(var=(value/lag(value,1)-1)*100)%>%
+  ungroup()%>%
+  ##Eliminar Nas
+  filter(!is.na(var))%>%
+  arrange(desc(var))%>%
+  mutate(catego=factor(catego, levels = catego))%>%
+  ggplot(., aes(catego,var))+
+  geom_col(fill="#feb24c")+
+  geom_text(aes(label=paste(format(round(var,1)), "%")), 
+            vjust=1.6, color="black", size=10, 
+            fontface="bold")+
+  theme_minimal() +
+  labs(
+    title = "Índice Nacional de Precios al Productor. Construcción",
+    subtitle = "Variación % acumulada en el año",
+    y = "Var. % acumulada",
+    x="",
+    caption = "Fuente: Elaborado por CANDEVI Nacional. Gerencia de Fondos de Vivienda. Coordinación de Indicadores de Vivienda
+con datos de INEGI."
+  )+
+  theme(plot.title = element_text(hjust = 0, size=20,face="bold"),
+        plot.subtitle = element_text(hjust = 0, size=12, face="italic"),
+        plot.caption = element_text(hjust = 0,size=8),
+        legend.position = "bottom",
+        text=element_text(size=20))
+ggsave("precios3.png", height=10, width=20, units='in', dpi=300)
+
+
+
+
+
+
+
 ##tabla 2
 inpp%>%
   filter(grupo=="Subsubíndice" | grupo=="Materiales de construcción")%>%
@@ -185,7 +227,7 @@ Principales genéricos con mayor aumento de precios en el mes</b></h>',
 con información de INEGI.",
            general_title = "
 Fuente: ")%>%
-  as_image(file="precios3.png")
+  as_image(file="precios4.png")
 
 
 
@@ -223,6 +265,6 @@ Principales genéricos con mayor disminución de precios en el mes</b></h>',
 con información de INEGI.",
            general_title = "
 Fuente: ")%>%
-  as_image(file="precios4.png")
+  as_image(file="precios5.png")
 
   
