@@ -87,7 +87,8 @@ inpp%>%
   ##Usar último dato
   filter(fecha==(max(fecha)))%>%
   select(catego,var)%>%
-  kable(caption='<h1 style="color:black;font-size:20px;"><b>Índice Nacional de Precios al Productor. Construcción</b></h>',
+  kable(caption='<h1 style="color:black;font-size:20px;"><b>Índice Nacional de Precios al Productor. Construcción<br>
+marzo 2021</b></h>',
         format="html",
         align = "c",
         col.names = c("Tipo",
@@ -135,7 +136,7 @@ geom_line(aes(linetype=catego,color=catego),size=1.5)+
   theme_bw() +
   scale_x_date(date_breaks="3 months",date_labels = "%b %Y")+
   labs(
-    title = "Índice Nacional de Precios al Productor. Construcción",
+    title = "Índice Nacional de Precios al Productor. Construcción, marzo 2021",
     subtitle = "Variación % anual",
     y = "Var. %",
     x="",
@@ -174,7 +175,7 @@ inpp%>%
   theme_minimal() +
   labs(
     title = "Índice Nacional de Precios al Productor. Construcción",
-    subtitle = "Variación % acumulada en el año",
+    subtitle = "Variación % acumulada en el año, marzo 2021",
     y = "Var. % acumulada",
     x="",
     caption = "Fuente: Elaborado por CANDEVI Nacional. Gerencia de Fondos de Vivienda. Coordinación de Indicadores de Vivienda
@@ -213,7 +214,8 @@ inpp%>%
   select(detalle,varet)%>%
   kable(caption='<h1 style="color:black;font-size:20px;"><b>Índice Nacional de Precios al Productor<br> 
 Materiales de construcción<br>
-Principales genéricos con mayor aumento de precios en el mes</b></h>',
+Principales genéricos con mayor aumento de precios en el mes<br>
+marzo 2021</b></h>',
         format="html",
         align = "c",
         col.names = c("Genérico",
@@ -251,7 +253,8 @@ inpp%>%
   select(detalle,varet)%>%
   kable(caption='<h1 style="color:black;font-size:20px;"><b>Índice Nacional de Precios al Productor<br> 
 Materiales de construcción<br>
-Principales genéricos con mayor disminución de precios en el mes</b></h>',
+Principales genéricos con mayor disminución de precios en el mes<br>
+        marzo 2021</b></h>',
         format="html",
         align = "c",
         col.names = c("Genérico",
